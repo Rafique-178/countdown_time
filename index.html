@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CountDown</title>
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			font-family: arial;
+		}
+
+		.countdownContent {
+			width: 100%;
+			height: 100vh;
+
+		}
+
+		.countdownContent ul {
+			text-align: center;
+
+		}
+		.countdownContent ul li {
+			width: 20%;
+			max-width: 120px;
+			height: 120px;
+			border: 1px solid #000;
+			border-radius: 50%;
+			margin: 5px;
+			display: inline-block;
+			box-sizing: border-box;
+			font-size: 50px;
+			text-align: center;
+			line-height: 120px;
+			position: relative;
+		}
+
+		.downText {
+			font-size: 20px;
+			color: #000;
+			position: absolute;
+			content: '';
+			left: 50%;
+			transform: translateX(-50%);
+			bottom: -85px;
+			font-weight: 600;
+			text-transform: uppercase;
+			color: #fff;
+		}
+		.textColor {
+			color: #000 !important;
+		}
+	</style>
+
+</head>
+
+<body>
+	<section class="countdownContent">
+
+
+		<h1 style="text-align: center; margin: 20px 20px; font-size: 50px; color: darkgoldenrod;">Coming Soon ... 2022</h1>
+
+		<ul id="countDown">
+			<li>
+				<span id="day" class="textColor">00</span>
+				<span class="downText textColor">Day</span>
+			</li>
+			<li>
+				<span id="hour" class="textColor">00</span>
+				<span class="downText textColor">Hour</span>
+			</li>
+			<li>
+				<span id="minute" class="textColor">00</span>
+				<span class="downText textColor">Minute</span>
+			</li>
+			<li>
+				<span id="second" class="textColor">00</span>
+				<span class="downText textColor">Second</span>
+			</li>
+		</ul>
+
+		<script>
+			let dayHtml = document.getElementById('day');
+			let hourHtml = document.getElementById('hour');
+			let minuteHtml = document.getElementById('minute');
+			let secondHtml = document.getElementById('second');
+
+
+			let dat = new Date();
+			function countTime() {
+
+				let setDate = new Date("1 Jan 2022 00:00:00");
+				let liveTime = new Date();
+
+				let Countdown = setDate - liveTime;
+
+				let secondCount = Math.floor(Countdown / 1000);
+				let minuteCount = Math.floor(secondCount / 60);
+				let hourCount = Math.floor(minuteCount / 60);
+				let dayCount = Math.floor(hourCount / 24);
+
+				let second = secondCount % 60;
+				let minute = minuteCount % 60;
+				let hour = hourCount % 24;
+				let day = dayCount % 30;
+
+				dayHtml.innerHTML = day;
+				hourHtml.innerHTML = hour;
+				minuteHtml.innerHTML = minute;
+				secondHtml.innerHTML = second;
+			}
+			countTime();
+
+			setInterval(countTime, 1000);
+		</script>
+	</section>
+</body>
+</html>
